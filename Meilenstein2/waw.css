@@ -1,0 +1,62 @@
+body {
+	color: rgb(0,0,0);
+	background-color: rgb(153,217,234);
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.bluetext {
+	color: rgb(63,72,204);
+}
+
+.blueborder {
+	border-color: rgb(63,72,204);
+	border-width: 10px;
+}
+
+label {
+	color: rgb(63,72,204);
+	width: 150px;
+	display: inline-block;
+}
+input {
+	width: 200px;
+}
+
+input, label {
+	font-size: 16px;
+}
+
+input[type=radio] {
+	font-size: 14px;
+}
+
+input[type=submit] {
+	border-width: 2px;
+	border-color: rgb(63,72,204);
+	background-color: rgb(153,217,234);
+}
+
+.half {
+	width: 50%;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.alignmiddle {
+	text-align: center;
+	width: 100%;
+}
+
+.clearing {
+	clear: both;
+}
+
+h2 {
+	font-size: 22px;
+}
