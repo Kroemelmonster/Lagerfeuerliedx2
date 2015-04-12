@@ -10,37 +10,37 @@
 </head>
 <body>
 	<!-- Augenkrebs... -->
-	<div class="alignmiddle bluetext">
+	<div class="titelbook bluetext">
 		<h2>Buch anlegen</h2>
 	</div>
 	<form action="http://martinakraus.net/createBookEntry.php" method="get">
 		<!-- Form-elements -->
-		<div class="half left">
-			<label for="iTitel">Titel:</label>
+		<div class="side left">
+			<label for="iTitel">Titel</label>
 			<input id="iTitel" type="text" name="titel" />
 			<br/>
 			
-			<label for="iAutor">Autor:</label>
+			<label for="iAutor">Autor</label>
 			<input id="iAutor" type="text" name="autor" />
 			<br/>
 			
-			<label for="iISBN">ISBN:</label>
+			<label for="iISBN">ISBN</label>
 			<input id="iISBN" type="number" name="isbn" />
 			<br/>
 			
-			<label for="iKapitel">Kapitel:</label>
+			<label for="iKapitel">Kapitel</label>
 			<input id="iKapitel" type="number" name="kapitel" />
 			<br/>
 			
-			<label for="iErscheinungsjahr">Erscheinungsjahr:</label>
+			<label for="iErscheinungsjahr">Erscheinungsjahr</label>
 			<input id="iErscheinungsjahr" type="number" name="jahr" />
 			<br/>
 			
-			<label for="iAuflage">Auflage:</label>
+			<label for="iAuflage">Auflage</label>
 			<input id="iAuflage" type="number" name="auflage" />
 			<br/>
 			
-			<label for="iArtDesBuches">Art des Buches:</label>
+			<label for="iArtDesBuches">Art des Buches</label>
 			<select id="iArtDesBuches" name="art">
 				<option value="eBook">eBook</option>
 				<option value="Newspaper">Newspaper</option>
@@ -60,22 +60,26 @@
 				<option value="gKomoedie">Kom&ouml;die</option>
 				<option value="gRomanze">Romanze</option>
 			</select>-->
-			<label for="iGenre">Genre:</label>
-			<input id="iGenre" type="radio" name="genre" value="Horror" checked="checked">Horror</option>
-			<input id="iGenre"  type="radio" name="genre" value="Psycho">Psycho</option>
-			<input id="iGenre"  type="radio" name="genre" value="Krimi">Krimi</option>
-			<input id="iGenre"  type="radio" name="genre" value="Doku">Doku</option>
-			<input id="iGenre"  type="radio" name="genre" value="Komoedie">Kom&ouml;die</option>
-			<input id="iGenre"  type="radio" name="genre" value="Romanze">Romanze</option>
+			<div class="checkboxcontainer">
+				<label for="iGenre">Genre</label>
+				<div>
+					<input id="iGenre" type="radio" name="genre" value="Horror" checked="checked"><span>Horror</span>
+					<input id="iGenre"  type="radio" name="genre" value="Psycho"><span>Psycho</span>
+					<input id="iGenre"  type="radio" name="genre" value="Krimi"><span>Krimi</span>
+					<input id="iGenre"  type="radio" name="genre" value="Doku"><span>Doku</span>
+					<input id="iGenre"  type="radio" name="genre" value="Komoedie"><span>Kom&ouml;die</span>
+					<input id="iGenre"  type="radio" name="genre" value="Romanze"><span>Romanze</span>
+				</div>
+			</div>
 			<br/>
 		</div>
 		
-		<div class="half right">
-			<label for="iVorname">Vorname:</label>
+		<div class="side">
+			<label for="iVorname">Vorname</label>
 			<input id="iVorname"  type="text" name="vorname" />
 			<br/>
 			
-			<label for="iNachname">Nachname:</label>
+			<label for="iNachname">Nachname</label>
 			<input id="iNachname"  type="text" name="nachname" />
 			<br/>
 			

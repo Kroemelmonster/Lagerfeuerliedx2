@@ -41,11 +41,14 @@ body {
 
 label {
 	color: rgb(63,72,204);
-	width: 150px;
+	width: 180px;
 	display: inline-block;
 }
-input {
+input{
 	width: 200px;
+}
+select {
+	width:204px;
 }
 
 input, label {
@@ -54,18 +57,16 @@ input, label {
 
 input[type=radio] {
 	font-size: 14px;
+	width: 15px;
 }
 
-.half {
-	width: 50%;
-}
-
-.right {
-	float: right;
+.side {
+	float: left;
+	width: 500px;
 }
 
 .left {
-	float: left;
+	padding-left: 50px;
 }
 
 .alignmiddle {
@@ -85,4 +86,27 @@ input[type=radio] {
 
 h2 {
 	font-size: 22px;
+}
+
+.titelbook {
+	  padding-left: 234px;
+}
+
+
+.checkboxcontainer {
+
+}
+
+.checkboxcontainer label {
+	float:left;
+}
+
+.checkboxcontainer div {
+	width:200px;
+	float:left;
+}
+
+.checkboxcontainer div span{
+	width: 73px;
+	display: inline-block;
 }
