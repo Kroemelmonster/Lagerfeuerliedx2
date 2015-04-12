@@ -1,6 +1,7 @@
 body {
 	color: rgb(0,0,0);
 	background-color: rgb(153,217,234);
+	font-weight: 800;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -9,10 +10,8 @@ body {
 }
 
 .caption {
-	text-transform: uppercase;
 	font-size: 72px;
-	line-height: 72px;
-	vertical-align: middle;
+	padding-bottom:20px;
 }
 
 .blueborder {
@@ -33,6 +32,7 @@ body {
 	font-size: 18px;
 	line-height: 40px;
 	vertical-align: middle;
+	cursor:pointer;
 }
 
 .buttonbox:hover {
