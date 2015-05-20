@@ -42,17 +42,18 @@ function load(json) {
 	// erstelle den tabellen inhalt html anhand der json object datei
 	var table = "";
 	table += '<tr>';
-	table += '<th>Autor</th>';
+	/*table += '<th>Autor</th>';
 	table += '<th>Titel</th>';
 	table += '<th>Kapitel</th>';
 	table += '<th>Buchart</th>';
 	table += '<th>ISBN</th>';
 	table += '<th>Erscheinungjahr</th>';
-	table += '<th>Auflage</th>';
-	// nachfolgende geht auch es nimmt halt einfach nur die keys. die wiederum leider lowcase sind
-1	/*Object.keys(json[0]).forEach(function(k) {
-		table += '<th>'+k+'</th>';
-	});*/
+	table += '<th>Auflage</th>';*/
+	//Für jeden Schlüssel des ersten JSON-Eintrages...
+	for(k in json[0]) {
+		//Wandelt den ersten Buchstaben in einen Großbuchstaben um und "hängt" den Rest des Wortes hinten an
+		table += '<th>' + k[0].toUpperCase() + k.slice(1) + '</th>';
+	}
 	table += '</tr>';
 	for (index = 0; index < json.length; ++index) {
 		table += '<tr>';
