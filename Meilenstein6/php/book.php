@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<?php
+	$vorname = '';
+	$nachname = '';
+	if(isset($_COOKIE['vorname'])){$vorname = $_COOKIE['vorname'];}
+	if(isset($_COOKIE['nachname'])){$nachname = $_COOKIE['nachname'];}
+?>
+<html lang="de">
+<head>
+ <meta charset="utf-8"/>
+ <title>Book</title>
+ <link rel="stylesheet" type="text/css" href="../css/waw.css"/>
+ <script language="javascript" type="text/javascript" src="../js/book.js"></script>
+</head>
+<body onload="onload()">
+	<div class="alignmiddle">
+		<h2><span class="bluetext">Meine Bücher</span></h2>
+		<div class="alignmiddlediv bookmenu">
+			<div id="horror" class="blueborder bluebutton buttonbox" onclick="horror()">
+				Horror
+			</div>
+			<div id="roman" class="blueborder bluebutton buttonbox" onclick="roman()">
+				Roman
+			</div>
+		</div>
+		<table id="table" class="booktable">
+			<tr>
+				<th>Autor</th>
+				<th>Titel</th>
+				<th>Buch</th>
+			</tr>
+			<tr>
+				<td>text 1</td>
+				<td>text 2</td>
+				<td>text 3</td>
+			</tr>
+		
+		</table>		
+	</div>
+	
+</body>
