@@ -20,10 +20,9 @@
 	
 	$user = $userHandler->getUserByName($_GET['vorname'], $_GET['nachname']);
 	if($user) {
-		$book = new Book($_GET['isbn'], $_GET['autor'], $_GET['titel'], $_GET['kapitel'], $_GET['art'], $_GET['genre'], $_GET['jahr'], $_GET['auflage'], $user->id, $_GET['filmfavorit']);
+		$book = new Book($_GET['isbn'], $_GET['autor'], $_GET['titel'], $_GET['kapitel'], $_GET['art'], $_GET['genre'], $_GET['jahr'], $_GET['auflage'], $user->id, isset($_GET['filmfavorit']));
 		if($book->isValid()) {
 			$result = $bookHandler->addBook($book);
-			print_r($result);
 		} else {
 			echo "Buch ungültig!\n";
 		}

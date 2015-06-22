@@ -1,6 +1,5 @@
-function onload(){
-	//mit horror begint es...
-    genre('Horror');
+function onload(name){
+    genre(name);
 }
 
 function sendRequest(name) {
@@ -8,12 +7,8 @@ function sendRequest(name) {
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status== 200) {
-			console.log("Success, status " + xmlhttp.status + ", readystate " + xmlhttp.readyState);
 			var json = JSON.parse(xmlhttp.responseText);
-			console.log("JSON " + json);
 			load(json[name]);
-		} else {
-			console.log("Not ready yet/failed, status " + xmlhttp.status + ", readystate " + xmlhttp.readyState);
 		}
 	}
 	// rufe getBooks auf und warte auf antwort.
@@ -50,7 +45,6 @@ function roman(){
 }
 
 function genre(name){
-	console.log("Getting " + name);
 	var o1 = document.getElementById(name);
 	
 	var x = document.getElementsByClassName("blueborder bluebutton buttonbox");
@@ -58,8 +52,8 @@ function genre(name){
 	for (i = 0; i < x.length; i++) {
 		x[i].className = "blueborder bluebutton buttonbox";
 	}
-	
-    o1.className = "blueborder bluebutton buttonbox selected";
+	if(o1 != null)
+		o1.className = "blueborder bluebutton buttonbox selected";
 	
 	/*// damit wir den server nicht unötig belasten schauen wir ob roman schon selected ist 
 	if (o1.className == "blueborder bluebutton buttonbox selected")
@@ -73,7 +67,6 @@ function genre(name){
 }
 
 function load(json) {
-	console.log(json);
 	// erstelle den tabellen inhalt html anhand der json object datei
 	var table = "";
 	table += '<tr>';

@@ -12,22 +12,35 @@
  <link rel="stylesheet" type="text/css" href="../css/waw.css"/>
  <script language="javascript" type="text/javascript" src="../js/book.js"></script>
 </head>
-<body onload="onload()">
+<?php
+
+	include("db/book.php");
+	include("db/bookhandler.php");
+	include("db/db_interface.php");
+				
+	$db = new DBInterface("localhost", "root", "", "mybooks");
+	$bookHandler = new BookHandler($db);
+				
+	$genres = $bookHandler->getGenres();
+	$genre = "";
+	if($genres) {
+		for($i = 1; $i<=count($genres); $i++) {
+			$books = $bookHandler->getBooksByGenre($genres[$i]);
+			if($books) {
+				$genre = $genres[$i];
+				break;
+			}
+		}
+	}
+	echo '<body onload="onload(\'' . $genre . '\')">';
+?>
 	<div class="alignmiddle">
 		<h2><span class="bluetext">Meine Bücher</span></h2>
 		<div class="alignmiddlediv bookmenu">
 			<!--<div id="Horror" class="blueborder bluebutton buttonbox" onclick="genre('Horror')">
 				Horror
 			</div>-->
-			<?php
-				include("db/book.php");
-				include("db/bookhandler.php");
-				include("db/db_interface.php");
-				
-				$db = new DBInterface("localhost", "root", "", "mybooks");
-				$bookHandler = new BookHandler($db);
-				
-				$genres = $bookHandler->getGenres();
+			<?php				
 				if($genres) {
 					for($i = 1; $i<=count($genres); $i++) {
 						$books = $bookHandler->getBooksByGenre($genres[$i]);
