@@ -19,9 +19,8 @@ class UserHandler {
 				$users[] = new User($row->vorname, $row->nachname, $row->id);
 			}
 			return $users;
-		} else {
-			echo "UserHandler.getUsers(): query failed\n";
 		}
+		echo "UserHandler.getUsers(): query failed\n";
 		return $result;
 	}
 	
@@ -32,10 +31,21 @@ class UserHandler {
 			{
 				return new User($row->vorname, $row->nachname, $row->id);
 			}
-		} else {
-			echo "UserHandler.getUserByID(): query failed\n";
 		}
+		echo "UserHandler.getUserByID(): query failed\n";
 		return $result;
+	}
+	
+	public function getUserByName($vorname, $nachname) {
+		$result = $this->db->query("SELECT * FROM benutzer WHERE vorname='" . $vorname ."' AND nachname='" . $nachname . "'");
+		if($result) {
+			while ($row = $result->fetch_object())
+			{
+				return new User($row->vorname, $row->nachname, $row->id);
+			}
+		}
+		echo "UserHandler.getUserByName(): query failed\n";
+		return false;
 	}
 	
 	public function addBook($book) {

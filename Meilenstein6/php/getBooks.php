@@ -1,10 +1,15 @@
 <?php
-	/*	Zur absicherung mit ifs gelöst.
-		Man könnte auch direkt den Filenamen übergeben doch dies ist sicher dass niemand die falschen files liest sondern nur die die er darf.
+	/*
+		Für DB-Anbindung abgeändert
+		Nimmt "name" als Genre-Bezeichnung und liefert alle Bücher des gewünschten Genres in JSON-Format zurück
 	*/
-	if ($_GET['name'] == 'horrordata')
-		echo  file_get_contents('../daten/horror_books.json'); 
-	if ($_GET['name'] == 'romandata')
-		echo  file_get_contents('../daten/roman_books.json'); 
-		
+	include("db/book.php");
+	include("db/bookhandler.php");
+	include("db/db_interface.php");
+	
+	$db = new DBInterface("localhost", "root", "", "mybooks");
+	$bookHandler = new BookHandler($db);
+	
+	$books = $bookHandler->getBooksByGenre($_GET['name']);
+	echo $bookHandler->toJSON("dump", $books);
 ?>

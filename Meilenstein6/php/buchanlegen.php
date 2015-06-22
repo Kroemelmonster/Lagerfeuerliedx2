@@ -1,15 +1,33 @@
 <?php
-$my_file = '../daten/books.txt'; // file direction
-$handle = fopen($my_file, 'a') or die('Cannot open file:  '.$my_file); // handle zur file
-$newline = $_GET['autor'].', '.$_GET['titel'].', '.$_GET['kapitel'].' Kapitel, '.$_GET['art'].', '.$_GET['isbn'].', '.$_GET['jahr'].', '.$_GET['auflage'].'. Auflage;'."\n";
-// unsere tolle Zeile mit allen daten
-fwrite($handle, $newline); // zeile in datei schreiben
-fclose($handle); // datei schliesen
-/* uiii ist das schwer. Ich geh einfach mal davon aus dass alle GETS funktionieren.
- ansonten müsste man hier ne abfrage machen für jedes einzelne was ca so aussieht :
-	if (isset($_GET['autor']) == false) {
-		dont save it ...
-	} if ....
-	PHP macht aus einer nicht existenten GET immer ein leeren String, und kein Fehler -> kann ich es so lassen da dann einfach leere daten drinstehtn : zb Peter hans, , 1990...
-*/
+	/*
+		Für DB-Anbindung abgeändert
+		Ermittelt User anhand des Namens
+		- Falls zulässiger User: Speichere Buch
+	*/
+
+//$_GET['autor'].', '.$_GET['titel'].', '.$_GET['kapitel'].' Kapitel, '.$_GET['art'].', '.$_GET['isbn'].', '.$_GET['jahr'].', '.$_GET['auflage'].'. Auflage;'."\n";
+	
+	include("/db/book.php");
+	include("/db/bookhandler.php");
+	include("/db/user.php");
+	include("/db/userhandler.php");
+	include("/db/db_interface.php");
+	
+	$db = new DBInterface("localhost", "root", "", "mybooks");
+	$bookHandler = new BookHandler($db);
+	$userHandler = new UserHandler($db);
+	
+	
+	$user = $userHandler->getUserByName($_GET['vorname'], $_GET['nachname']);
+	if($user) {
+		$book = new Book($_GET['isbn'], $_GET['autor'], $_GET['titel'], $_GET['kapitel'], $_GET['art'], $_GET['genre'], $_GET['jahr'], $_GET['auflage'], $user->id, $_GET['filmfavorit']);
+		if($book->isValid()) {
+			$result = $bookHandler->addBook($book);
+			print_r($result);
+		} else {
+			echo "Buch ungültig!\n";
+		}
+	} else {
+		echo "Benutzer ungültig!\n";
+	}
 ?>

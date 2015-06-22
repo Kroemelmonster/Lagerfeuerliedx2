@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 21. Jun 2015 um 19:58
+-- Erstellungszeit: 22. Jun 2015 um 15:13
 -- Server-Version: 5.6.24
 -- PHP-Version: 5.5.24
 
@@ -79,28 +79,19 @@ CREATE TABLE IF NOT EXISTS `buecher` (
   `genre_id` int(11) NOT NULL,
   `erscheinungsjahr` int(11) NOT NULL,
   `auflage` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `user_id` int(11) NOT NULL,
+  `favorit` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2147483647 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `buecher`
 --
 
-INSERT INTO `buecher` (`isbn`, `autor`, `titel`, `kapitel`, `buchart_id`, `genre_id`, `erscheinungsjahr`, `auflage`, `user_id`) VALUES
-(1, 'meh', 'meh2', 1, 2, 3, 4, 5, 0),
-(2, 'meh', 'meh', 1, 2, 4, 4, 5, 0);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `favoriten`
---
-
-CREATE TABLE IF NOT EXISTS `favoriten` (
-  `id` int(11) NOT NULL,
-  `isbn` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `buecher` (`isbn`, `autor`, `titel`, `kapitel`, `buchart_id`, `genre_id`, `erscheinungsjahr`, `auflage`, `user_id`, `favorit`) VALUES
+(1, 'meh', 'meh2', 1, 2, 3, 4, 5, 0, 0),
+(2, 'meh', 'meh', 1, 2, 4, 4, 5, 0, 0),
+(123324354, 'meh', 'mehmehmeh', 1, 2, 3, 4, 5, 6, 1),
+(2147483647, 'PauloCoelho', 'Der Alchemist', 35, 3, 6, 1996, 3, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -118,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `genres` (
 --
 
 INSERT INTO `genres` (`id`, `name`) VALUES
-(1, 'Horro'),
+(1, 'Horror'),
 (2, 'Psycho'),
 (3, 'Krimi'),
 (4, 'Doku'),
@@ -148,12 +139,6 @@ ALTER TABLE `buecher`
   ADD PRIMARY KEY (`isbn`);
 
 --
--- Indizes für die Tabelle `favoriten`
---
-ALTER TABLE `favoriten`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indizes für die Tabelle `genres`
 --
 ALTER TABLE `genres`
@@ -177,12 +162,7 @@ ALTER TABLE `bucharten`
 -- AUTO_INCREMENT für Tabelle `buecher`
 --
 ALTER TABLE `buecher`
-  MODIFY `isbn` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT für Tabelle `favoriten`
---
-ALTER TABLE `favoriten`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `isbn` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2147483647;
 --
 -- AUTO_INCREMENT für Tabelle `genres`
 --

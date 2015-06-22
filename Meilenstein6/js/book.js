@@ -44,6 +44,28 @@ function roman(){
 	sendRequest("romandata");
 }
 
+function genre(name){
+	var o1 = document.getElementById(name);
+	
+	var x = document.getElementsByClassName("blueborder bluebutton buttonbox");
+	var i;
+	for (i = 0; i < x.length; i++) {
+		x[i].className = "blueborder bluebutton buttonbox";
+	}
+	
+    o1.className = "blueborder bluebutton buttonbox selected";
+	
+	/*// damit wir den server nicht unötig belasten schauen wir ob roman schon selected ist 
+	if (o1.className == "blueborder bluebutton buttonbox selected")
+		return;
+	// swap die class names.
+    o1.className = "blueborder bluebutton buttonbox selected";
+    
+	var o2 = document.getElementById("horror");
+    o2.className = "blueborder bluebutton buttonbox";*/
+	sendRequest(name);
+}
+
 function load(json) {
 	// erstelle den tabellen inhalt html anhand der json object datei
 	var table = "";

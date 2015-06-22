@@ -74,7 +74,7 @@ class BookHandler {
 			$books = array();
 			while ($row = $result->fetch_object())
 			{
-				$books[] = new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage);
+				$books[] = new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage, $row->user_id, $row->favorit);
 			}
 			return $books;
 		} else {
@@ -92,7 +92,7 @@ class BookHandler {
 			$books = array();
 			while ($row = $result->fetch_object())
 			{
-				$books[] = new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage);
+				$books[] = new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage, $row->user_id, $row->favorit);
 			}
 			return $books;
 		} else {
@@ -108,29 +108,30 @@ class BookHandler {
 		if($result) {
 			while ($row = $result->fetch_object())
 			{
-				return new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage);
+				return new Book($row->isbn, $row->autor, $row->titel, $row->kapitel, $bucharten[$row->buchart_id], $genres[$row->genre_id], $row->erscheinungsjahr, $row->auflage, $row->user_id, $row->favorit);
 			}
-		} else {
-			echo "BookHandler.getBookByID(): query failed\n";
 		}
-		return $result;
+		echo "BookHandler.getBookByISBN(): query failed\n";
+		return false;
 	}
 	
 	public function addBook($book) {
 		$genre_id = $this->getGenreID($book->genre);
 		$buchart_id = $this->getBuchartID($book->buchart);
-		$book = $this->getBookByISBN($book->isbn);
+		$bookDB = $this->getBookByISBN($book->isbn);
 		
-		if($book) {
-			echo "Buch mit der ISBN " . $book->isbn . " existiert bereits!\n";
+		print_r($bookDB);
+		
+		if($bookDB) {
+			echo "Buch mit der ISBN " . $bookDB->isbn . " existiert bereits!\n";
 			return false;
 		}
-		if(!$genre || !$buchart) {
+		if(!$genre_id || !$buchart_id) {
 			echo "Genre oder Buchart unbekannt!\n";
 			return false;
 		} else {
-			$sql = "INSERT INTO buecher (isbn, autor, titel, kapitel, buchart_id, genre_id, erscheinungsjahr, auflage, user_id) values('" . $book->isbn . "', '" . $book->autor . "', '" . $book->titel . "', '" . $book->kapitel . "', '" . $buchart_id . "', '" . $genre_id . "', '" . $book->erscheinungsjahr . "', '" . $book->auflage . "', '" . $book->user->id . "')";
-			$result = $this->db->query(sql);
+			$sql = "INSERT INTO buecher (isbn, autor, titel, kapitel, buchart_id, genre_id, erscheinungsjahr, auflage, user_id, favorit) values('" . $book->isbn . "', '" . $book->autor . "', '" . $book->titel . "', '" . $book->kapitel . "', '" . $buchart_id . "', '" . $genre_id . "', '" . $book->erscheinungsjahr . "', '" . $book->auflage . "', '" . $book->user_id . "', '" . $book->favorit . "')";
+			$result = $this->db->query($sql);
 			if(!$result) {
 				echo "BookHandler.addBook(): query failed\n";
 				return false;

@@ -1,10 +1,10 @@
 <?php
 class Book {
 	//Variablen
-	public $isbn, $autor, $titel, $kapitel, $buchart, $genre, $erscheinungsjahr, $auflage;
+	public $isbn, $autor, $titel, $kapitel, $buchart, $genre, $erscheinungsjahr, $auflage, $user_id, $favorit;
 	
 	//Konstruktor
-	function __construct($isbn, $autor, $titel, $kapitel, $buchart, $genre, $erscheinungsjahr, $auflage)
+	function __construct($isbn, $autor, $titel, $kapitel, $buchart, $genre, $erscheinungsjahr, $auflage, $user_id, $favorit)
 	{
 		$this->isbn = $isbn;
 		$this->autor = $autor;
@@ -14,6 +14,8 @@ class Book {
 		$this->genre = $genre;
 		$this->erscheinungsjahr = $erscheinungsjahr;
 		$this->auflage = $auflage;
+		$this->user_id = $user_id;
+		$this->favorit = $favorit;
 	}
 	
 	//Methoden
@@ -29,6 +31,11 @@ class Book {
 		'"auflage": ' . $this->auflage .'' .
 		'"genre": "' . $this->genre .'",' .
 		'}';
+	}
+	
+	public function isValid() {
+		//TODO: Serverseitige Validierung der Attribute
+		return true;
 	}
 }
 ?>

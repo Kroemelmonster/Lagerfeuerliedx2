@@ -16,12 +16,26 @@
 	<div class="alignmiddle">
 		<h2><span class="bluetext">Meine Bücher</span></h2>
 		<div class="alignmiddlediv bookmenu">
-			<div id="horror" class="blueborder bluebutton buttonbox" onclick="horror()">
+			<!--<div id="Horror" class="blueborder bluebutton buttonbox" onclick="genre('Horror')">
 				Horror
-			</div>
-			<div id="roman" class="blueborder bluebutton buttonbox" onclick="roman()">
-				Roman
-			</div>
+			</div>-->
+			<?php
+				include("db/book.php");
+				include("db/bookhandler.php");
+				include("db/db_interface.php");
+				
+				$db = new DBInterface("localhost", "root", "", "mybooks");
+				$bookHandler = new BookHandler($db);
+				
+				$genres = $bookHandler->getGenres();
+				if($genres) {
+					for($i = 1; $i<=count($genres); $i++) {
+						echo "<div id='" . $genres[$i] . "' class='blueborder bluebutton buttonbox' onclick='genre(\"" . $genres[$i] . "\")'>" . $genres[$i] . "</div>";
+					}
+				} else {
+					echo "Keine Genres in der Datenbank gefunden!";
+				}
+			?>
 		</div>
 		<table id="table" class="booktable">
 			<tr>
