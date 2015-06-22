@@ -52,6 +52,7 @@
 					echo "Keine Genres in der Datenbank gefunden!";
 				}
 			?>
+			<div style="clear:both"></div>
 		</div>
 		<table id="table" class="booktable">
 			<tr>
