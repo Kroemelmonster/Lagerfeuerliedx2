@@ -11,5 +11,5 @@
 	$bookHandler = new BookHandler($db);
 	
 	$books = $bookHandler->getBooksByGenre($_GET['name']);
-	echo $bookHandler->toJSON("dump", $books);
+	echo $bookHandler->toJSON($_GET['name'], $books);
 ?>

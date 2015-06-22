@@ -30,7 +30,10 @@
 				$genres = $bookHandler->getGenres();
 				if($genres) {
 					for($i = 1; $i<=count($genres); $i++) {
-						echo "<div id='" . $genres[$i] . "' class='blueborder bluebutton buttonbox' onclick='genre(\"" . $genres[$i] . "\")'>" . $genres[$i] . "</div>";
+						$books = $bookHandler->getBooksByGenre($genres[$i]);
+						if($books) {
+							echo '<div id="' . $genres[$i] . '" class="blueborder bluebutton buttonbox" onclick="genre(\'' . $genres[$i] . '\')">' . $genres[$i] . '</div>';
+						}
 					}
 				} else {
 					echo "Keine Genres in der Datenbank gefunden!";

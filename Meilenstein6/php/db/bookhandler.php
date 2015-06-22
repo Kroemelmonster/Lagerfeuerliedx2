@@ -47,10 +47,9 @@ class BookHandler {
 			{
 				return $row->id;
 			}
-		} else {
-			echo "BookHandler.getBuchartID(): query failed\n";
 		}
-		return $result;
+		echo "BookHandler.getBuchartID(): query failed\n";
+		return false;
 	}
 	
 	public function getGenreID($genre)	{
@@ -60,10 +59,9 @@ class BookHandler {
 			{
 				return $row->id;
 			}
-		} else {
-			echo "BookHandler.getGenreID(): query failed\n";
 		}
-		return $result;
+		echo "BookHandler.getGenreID(): query failed\n";
+		return false;
 	}
 	
 	public function getBooks() {
@@ -88,6 +86,9 @@ class BookHandler {
 		$bucharten = $this->getBucharten($this->db);
 		$genre_id = $this->getGenreID($genre);
 		$result = $this->db->query("SELECT * FROM buecher WHERE genre_id='" . $genre_id . "'");
+		if(!$genre_id) {
+			echo "BookHandler.getBooksByGenre(): Genre " . $genre . " not found\n";
+		}
 		if($result) {
 			$books = array();
 			while ($row = $result->fetch_object())

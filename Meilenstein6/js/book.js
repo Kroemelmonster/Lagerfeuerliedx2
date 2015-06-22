@@ -1,14 +1,19 @@
 function onload(){
 	//mit horror begint es...
-    horror();
+    genre('Horror');
 }
 
 function sendRequest(name) {
+	console.log("Requesting " + name);
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status== 200) {
+			console.log("Success, status " + xmlhttp.status + ", readystate " + xmlhttp.readyState);
 			var json = JSON.parse(xmlhttp.responseText);
+			console.log("JSON " + json);
 			load(json[name]);
+		} else {
+			console.log("Not ready yet/failed, status " + xmlhttp.status + ", readystate " + xmlhttp.readyState);
 		}
 	}
 	// rufe getBooks auf und warte auf antwort.
@@ -45,6 +50,7 @@ function roman(){
 }
 
 function genre(name){
+	console.log("Getting " + name);
 	var o1 = document.getElementById(name);
 	
 	var x = document.getElementsByClassName("blueborder bluebutton buttonbox");
@@ -67,6 +73,7 @@ function genre(name){
 }
 
 function load(json) {
+	console.log(json);
 	// erstelle den tabellen inhalt html anhand der json object datei
 	var table = "";
 	table += '<tr>';

@@ -28,14 +28,33 @@ class Book {
 		'"buchart": "' . $this->buchart .'",' .
 		'"ISBN": ' . $this->isbn .',' .
 		'"erscheinungsjahr": ' . $this->erscheinungsjahr .',' .
-		'"auflage": ' . $this->auflage .'' .
-		'"genre": "' . $this->genre .'",' .
+		'"auflage": ' . $this->auflage .
 		'}';
 	}
 	
 	public function isValid() {
-		//TODO: Serverseitige Validierung der Attribute
-		return true;
-	}
+        if(preg_match("/^(([1-9]\d*)|0)$/",$this->auflage) == false){
+            return false;
+        }
+        if(!preg_match("/^(1\d{3}|200[0-9]|201[0-5])$/",$this->erscheinungsjahr)){
+            return false;
+        }
+        if(!preg_match("/^(([1-9]\d*)|0)$/",$this->kapitel)){
+            return false;
+        }
+        if(!preg_match("/^\d{1,13}$/",$this->isbn)){
+            return false;
+        }
+        if(!preg_match("/^[A-Za-zäöüÄÖÜß]+$/",$this->autor)){
+            return false;
+        }
+        if(!preg_match("/^.+$/",$this->titel)){
+            return false;
+        }
+        if(!preg_match("/^[A-Za-zäöüÄÖÜß]+$/",$this->genre)){
+            return false;
+        }
+        return true;
+    }
 }
 ?>
